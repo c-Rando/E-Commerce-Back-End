@@ -28,8 +28,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    await Tag.create(req.body);
-    res.status(201).json('ok');
+    const newItem = await Tag.create(req.body);
+    res.status(201).json({ id: newItem.id, message: 'ok' });
   } catch (err) {
     console.log(err);
     res.status(500).json({msg: err.message});
